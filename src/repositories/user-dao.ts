@@ -5,8 +5,7 @@ import { invalidCredentialsError, unauthurized, UserNotFoundError, InternalServe
 import { UserDTO } from "../dtos/UserDTO";
 import { userDTOToUserConverter } from "../util/user_dto_to_user";
 
-export async function daoFindUserByUsernameAndPassword(username:string,password:string):Promise<User>
-{
+export async function daoFindUserByUsernameAndPassword(username:string,password:string):Promise<User>{
     let client:PoolClient// our potential connection to db
     try {
         client = await connectionPool.connect()
@@ -34,8 +33,7 @@ export async function daoFindUserByUsernameAndPassword(username:string,password:
 
 
 // this function gets anf formats all users
-export async function daoFindAllUsers():Promise<User[]>
-{
+export async function daoFindAllUsers():Promise<User[]>{
     let client:PoolClient
     try{
         client = await connectionPool.connect()
@@ -55,21 +53,18 @@ export async function daoFindAllUsers():Promise<User[]>
 
 
 // function that saves a new user and returns that user with its new id
-export async function daoSaveOneUser(newUser:UserDTO):Promise<User>
- {
+export async function daoSaveOneUser(newUser:UserDTO):Promise<User> {
     let client:PoolClient
-    //console.log('this is dao function   '+ UserDTO);
+   // console.log('this is dao function   '+ UserDTO);
     
     try { 
         client = await connectionPool.connect()
         // send a query and immeadiately get the role id matching the name on the dto
          let role_Id = (await client.query('SELECT * FROM reimbursement.roles WHERE "role" =  $1', [newUser.role])).rows[0].roleId
-        //console.log(`This After Sellection value ${role_Id}`);
-        let exist = false
-       
-
+     //   console.log(`This After Sellection value ${role_Id}`);
+        
         // send an insert that uses the id above and the user input
-        let result = await client.query('insert into reimbursement.users ( username, "password", "firstName", "lastName", email, "roleId") values ($1,$2,$3,$4,$5,$6) RETURNING "userId";',
+        let result = await client.query('INSERT INTO reimbursement.users ( username, "password", "firstName", "lastName", email, "roleId") values ($1,$2,$3,$4,$5,$6) RETURNING "userId";',
         [newUser.username, newUser.password,  newUser.firstName, newUser.lastName,newUser.email, role_Id])
        // console.log( '  this is db   ' +result);
         
@@ -85,8 +80,7 @@ export async function daoSaveOneUser(newUser:UserDTO):Promise<User>
 }
 
 
-export async function daoFindUserById(id:number):Promise<User>
-{
+export async function daoFindUserById(id:number):Promise<User>{
     let client:PoolClient
     try{
         client = await connectionPool.connect()

@@ -16,8 +16,9 @@ export async function findAllUsers():Promise<User[]>{
  }
  
  
- export async function saveOneUser(newUser:UserDTO):Promise<User>{
-    //console.log('this is service ' );
+ export async function saveOneUser(newUser:UserDTO):Promise<User>
+ {
+   // console.log('this is service ' +User  );
     
     return await daoSaveOneUser(newUser)
  }

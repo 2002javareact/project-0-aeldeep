@@ -7,7 +7,7 @@ export function userDTOToUserConverter(userDTO:UserDTO):User
     return new User(
         userDTO.userId ,
         userDTO.username,
-        '############9##',
+        '##############',
         //userDTO.password,
         userDTO.firstName,
         userDTO.lastName,

@@ -1,21 +1,21 @@
 export class UserDTO 
 {
     userId: number  // primary key
-	username: string  // not null  unique
-	password: string  // not null
-	firstName: string  // not null
-	lastName: string  // not null
-	email: string  // not null
+	username: String  // not null  unique
+	password: String  // not null
+	firstName: String  // not null
+	lastName: String  // not null
+	email: String  // not null
 	roleId: Number // not null
     role :String
     constructor
     (
         userId: number, // primary key
-        username: string, // not null, unique
-        password: string, // not null
-        firstName: string, // not null
-        lastName: string, // not null
-        email: string, // not null
+        username: String, // not null, unique
+        password: String, // not null
+        firstName: String, // not null
+        lastName: String, // not null
+        email: String, // not null
         roleId: Number, // not null
         role :String
     ) 

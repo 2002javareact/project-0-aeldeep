@@ -1,11 +1,8 @@
 import  express= require ('express')
 import {logMiddleware} from './middleware/log_middleware'
 import bodyParser = require('body-parser')
-import { invalidCredentialsError } from './errors/log_Error'
-import { HttpError} from './errors/HttpError'
 import {findUserByUsernameAndPassword} from "./services/user_services"
 import { sessionMiddleware } from './middleware/session'
-import { User } from './models/user'
 import { userRouter } from './routers/user-router'
 import { reimRouter } from './routers/Reim-router'
 
