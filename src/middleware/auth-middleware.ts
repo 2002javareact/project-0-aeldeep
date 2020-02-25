@@ -35,7 +35,6 @@ export const auth=(roles:String[])=>
                     allow= true
                     next()                    
                 }
-                                
             }
             if(!allow)
             {

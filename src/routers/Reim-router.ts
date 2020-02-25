@@ -23,7 +23,7 @@ reimRouter.get('/status/:status',auth(['1','2']),authId ,async(req,res)=>
     }
 })
 
-reimRouter.get('/reimbursements/author/userId/', auth(['1','2']),authId ,async(req,res)=>
+reimRouter.get('/author/userId/:id', auth(['1','2','3']),authId ,async(req,res)=>
 {
     const id = +req.params.id//get the user ID
     if(isNaN(id)){
@@ -31,9 +31,9 @@ reimRouter.get('/reimbursements/author/userId/', auth(['1','2']),authId ,async(r
     }else {
         try{
             let reimbursement = await findReimById(id)
-           // console.log('returning router value')
-            //console.log(reimbursement)
-            //console.log(findReimById(id));
+           /* console.log('returning router value')
+            console.log(reimbursement)
+            console.log(findReimById(id));*/
             res.json(reimbursement)
             }
         catch(e){
