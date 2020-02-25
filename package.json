@@ -1,0 +1,35 @@
+{
+  "name": "ers",
+  "version": "1.0.0",
+  "description": "Expense Reimbursement System (ERS) API",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon --exec ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2002javareact/project-0-aeldeep.git"
+  },
+  "author": "Eldeep",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2002javareact/project-0-aeldeep/issues"
+  },
+  "homepage": "https://github.com/2002javareact/project-0-aeldeep#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/express-session": "^1.15.16",
+    "@types/pg": "^7.14.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mssql": "^6.1.0",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "express-session": "^1.17.0",
+    "pg": "^7.18.2"
+  }
+}

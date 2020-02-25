@@ -1,0 +1,47 @@
+drop schema if exists reimbursement cascade;
+create schema reimbursement;
+set schema 'reimbursement';
+
+
+create table "role"
+(
+roleid numeric(10,0) primary key,
+"role"   text not null unique
+);
+
+create table "user" 
+(
+userid serial primary key,
+username text not null unique,
+"password" text	not null,
+firstname text not null,
+lastname text not null,
+email  text not null,
+"role" numeric(10,0) references "role"(roleid) not null
+);
+
+create table reimbursementstatus
+(
+statusid numeric(10,0) primary key,
+status   text not null 
+);
+
+create table reimbursementtype
+(
+typeid numeric (10,0) primary key,
+"type"  text not null unique
+);
+
+create table reimbursement
+(
+reimbursementid  serial primary key,
+auther int references "user"(userid),
+amount  numeric not null,
+datesubmitted  date not null,
+dateresolved  date not null,
+description   text not null,
+resolver int references "user"(userid),
+status  numeric(10,0) references reimbursementstatus(statusid),
+"type" numeric(10,0) references reimbursementtype(typeid)
+);
+
