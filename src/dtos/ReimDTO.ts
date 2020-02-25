@@ -1,26 +1,26 @@
 export class ReimDTO 
 {
     reimbursementId: number  // primary key
-	author: number   // foreign key -> User  not null
+	author: String   // foreign key -> User  not null
 	amount: number   // not null
     dateSubmitted: number  // not null
     dateResolved: number  // not null
     description: string  // not null
-    resolver: number  // foreign key -> User
-    status: number  // foreign ey -> ReimbursementStatus  not null
-    type: number // foreign key -> ReimbursementType
+    resolver: String  // foreign key -> User
+    status: String  // foreign ey -> ReimbursementStatus  not null
+    type: String // foreign key -> ReimbursementType
     
     constructor
     (
         reimbursementId: number, // primary key
-        author: number,  // foreign key -> User, not null
+        author: String,  // foreign key -> User, not null
         amount: number,  // not null
         dateSubmitted: number, // not null
         dateResolved: number, // not null
         description: string, // not null
-        resolver: number, // foreign key -> User
-        status: number, // foreign ey -> ReimbursementStatus, not null
-        type: number // foreign key -> ReimbursementType
+        resolver: String, // foreign key -> User
+        status: String, // foreign ey -> ReimbursementStatus, not null
+        type: String // foreign key -> ReimbursementType
     ) 
     {
         this.reimbursementId= reimbursementId  // primary key

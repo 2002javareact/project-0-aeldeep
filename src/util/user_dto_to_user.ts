@@ -16,7 +16,6 @@ export function userDTOToUserConverter(userDTO:UserDTO):User
         userDTO.role
           
     )
-  
-    
-    
 }
+
+

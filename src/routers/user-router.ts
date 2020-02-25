@@ -1,7 +1,7 @@
 import express = require('express')
 import { auth,  authId } from '../middleware/auth-middleware'
 import { User } from '../models/user';
-import { findAllUsers, findUserById, saveOneUser } from '../services/user_services';
+import { findAllUsers, findUserById, saveOneUser, updateOneUser } from '../services/user_services';
 import { UserDTO } from '../dtos/UserDTO';
 
 
@@ -15,6 +15,8 @@ userRouter.get('', [auth(['1','2']),  async (req,res)=>
 
 userRouter.post('', auth(['1']), async (req,res)=>
 {
+    try {
+        
     let {
          username, password, 
         emailAddress, id,
@@ -50,21 +52,24 @@ userRouter.post('', auth(['1']), async (req,res)=>
         res.status(400).send('Please Include all user fields')
         // for setting a status and a body
     }
+    
+} catch (e) {
+    res.status(400).send('Please enter valied information')
+}
 })
 
-/*
+
 
 
 userRouter.patch('', auth(['1']), async (req,res)=>
 {
-    
+    try {
     let {
          username, password, 
         emailAddress, id,
         firstName, lastName,
         role
-        }:
-        {
+        }:{
             username:String,
             password:String,
             emailAddress:String,
@@ -72,30 +77,29 @@ userRouter.patch('', auth(['1']), async (req,res)=>
             firstName:String,
             lastName:String,
             role:String
-      
-         } 
-            = req.body// this will be where the data the sent me is
+         }= req.body
+    // this will be where the data the sent me is
     // the downside is this is by default just a String of json, not a js object
     if(username && password && emailAddress && id && firstName && lastName && role)
     {       
-        let newUser = await saveOneUser(new UserDTO(
-                                            0,
-                                            username,
-                                            password,
-                                            firstName,
-                                            lastName,
-                                            emailAddress,
-                                            0,
-                                            role,
-                                            
-        ))
+        let newUser = await updateOneUser(new UserDTO(
+                                                    id,
+                                                    username, password, 
+                                                    firstName, lastName,
+                                                    emailAddress,
+                                                    0,role)
+        )
 // this would be some function for adding a new user to a db
         res.status(201).json(newUser);
     } else {
         res.status(400).send('Please include all user fields')
         // for setting a status and a body
     }
-})*/
+        } catch (e) {
+            res.status(400).send('Please enter valied information')
+        
+}
+})
 
 
 // in express we can add a path variable by using a colon in the path
@@ -112,7 +116,6 @@ userRouter.get('/:id', auth(['1', '2', '3']), authId, async (req,res)=>{
         catch(e){
             res.status(e.status).send(e.message)
             }
-      
-        
+
     }
 })

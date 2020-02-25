@@ -7,7 +7,7 @@ export function reimDTOReimConverter(reimDTO:ReimDTO):reimbursement
     /*console.log('in converter:')
     console.log(reimDTO)
     console.log(reimbursement);*/
-    
+ 
     return new reimbursement(
         reimDTO.reimbursementId,
         reimDTO.author,
