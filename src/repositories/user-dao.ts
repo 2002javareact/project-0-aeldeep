@@ -44,7 +44,7 @@ export async function daoFindAllUsers():Promise<User[]>{
         
 
     }catch(e){
-        throw new InternalServerError()
+        throw new unauthurized()
     } finally {
         client && client.release()
     }
@@ -69,7 +69,7 @@ export async function daoSaveOneUser(newUser:UserDTO):Promise<User> {
         newUser.userId = result.rows[0].userId
         return userDTOToUserConverter(newUser)// convert and send back
     } catch(e){
-        throw new InternalServerError()
+        throw new unauthurized()
     } finally {
         client && client.release()
     }

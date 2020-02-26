@@ -3,24 +3,23 @@ export class reimbursement
     reimbursementId: Number  // primary key
 	author: String   // foreign key -> User  not null
     amount: Number   // not null
-    dateSubmitted: Number  // not null
-    dateResolved: Number  // not null
-    description: string  // not null
+    dateSubmitted: Date  // not null
+    dateResolved: Date  // not null
+    description: String  // not null
     resolver: String  // foreign key -> User
     status: String  // foreign ey -> ReimbursementStatus  not null
     type: String // foreign key -> ReimbursementType
-
     
     constructor
-    (reimbursementId: number, // primary key
+        (reimbursementId: number, // primary key
         author: String,  // foreign key -> User, not null
         amount: number,  // not null
-      dateSubmitted: number, // not null
-      dateResolved: number, // not null
-      description: string, // not null
-      resolver: String, // foreign key -> User
-      status: String, // foreign ey -> ReimbursementStatus, not null
-      type: String,
+        dateSubmitted: Date, // not null
+        dateResolved: Date, // not null
+        description: String, // not null
+        resolver: String, // foreign key -> User
+        status: String, // foreign ey -> ReimbursementStatus, not null
+        type: String,
       
     ) 
     {

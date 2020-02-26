@@ -3,9 +3,9 @@ export class ReimDTO
     reimbursementId: number  // primary key
 	author: String   // foreign key -> User  not null
 	amount: number   // not null
-    dateSubmitted: number  // not null
-    dateResolved: number  // not null
-    description: string  // not null
+    dateSubmitted: Date  // not null
+    dateResolved: Date  // not null
+    description: String  // not null
     resolver: String  // foreign key -> User
     status: String  // foreign ey -> ReimbursementStatus  not null
     type: String // foreign key -> ReimbursementType
@@ -15,9 +15,9 @@ export class ReimDTO
         reimbursementId: number, // primary key
         author: String,  // foreign key -> User, not null
         amount: number,  // not null
-        dateSubmitted: number, // not null
-        dateResolved: number, // not null
-        description: string, // not null
+        dateSubmitted: Date, // not null
+        dateResolved: Date, // not null
+        description: String, // not null
         resolver: String, // foreign key -> User
         status: String, // foreign ey -> ReimbursementStatus, not null
         type: String // foreign key -> ReimbursementType

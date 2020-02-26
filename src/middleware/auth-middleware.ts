@@ -52,11 +52,11 @@ export const authId= (req,res,next) => {
         next()
     }else if(req.session.user.userId == +req.params.id )
     {
-        //console.log(` session id  ${req.session.user.roleId} ,id = ${req.params.id}`);
+        console.log(` session id  ${req.session.user.roleId} ,id = ${req.params.id}`);
         
         next()
     } else {
-        res.status(403).send('You are UnAuthorized for this eendpoint')
+        res.status(403).send('You are UnAuthorized for this endpoint')
     }
 }
 
