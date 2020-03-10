@@ -5,6 +5,7 @@ import {findUserByUsernameAndPassword} from "./services/user_services"
 import { sessionMiddleware } from './middleware/session'
 import { userRouter } from './routers/user-router'
 import { reimRouter } from './routers/Reim-router'
+import { corsFilter } from './middleware/cors-filter'
 
 
 
@@ -13,6 +14,7 @@ pro.use('/',bodyParser.json())
 
 pro.use(logMiddleware)
 pro.use(sessionMiddleware)
+pro.use(corsFilter)
 
 pro.use('/users', userRouter)
 pro.use('/reimbursements', reimRouter)
