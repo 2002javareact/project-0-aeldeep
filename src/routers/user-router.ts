@@ -20,15 +20,15 @@ userRouter.post('', auth(['1']), async (req,res)=>
         
     let {
          username, password, 
-        emailAddress, id,
+        email, userId,
         firstName, lastName,
         role
         }:
         {
             username:String,
             password:String,
-            emailAddress:String,
-            id:number,
+            email:String,
+            userId:number,
             firstName:String,
             lastName:String,
             role:String
@@ -36,13 +36,13 @@ userRouter.post('', auth(['1']), async (req,res)=>
     // the downside is this is by default just a String of json, not a js object
     //console.log(username, password  , emailAddress , id, firstName , lastName , role );
     
-    if(username && password && emailAddress && id && firstName && lastName && role)
+    if(username && password && email && userId && firstName && lastName && role)
     {       
         let newUser = await saveOneUser(new UserDTO(
                                             0,
                                             username, password, 
                                             firstName, lastName,
-                                            emailAddress,
+                                            email,
                                             0,role)
                                         )
                                         console.log(newUser);
@@ -67,27 +67,27 @@ userRouter.patch('', auth(['1']), async (req,res)=>
     try {
     let {
          username, password, 
-        emailAddress, id,
+        email, userId,
         firstName, lastName,
         role
         }:{
             username:String,
             password:String,
-            emailAddress:String,
-            id:number,
+            email:String,
+            userId:number,
             firstName:String,
             lastName:String,
             role:String
          }= req.body
     // this will be where the data the sent me is
     // the downside is this is by default just a String of json, not a js object
-    if(username && password && emailAddress && id && firstName && lastName && role)
+    if(username && password && email && userId && firstName && lastName && role)
     {       
         let newUser = await updateOneUser(new UserDTO(
-                                                    id,
+            userId,
                                                     username, password, 
                                                     firstName, lastName,
-                                                    emailAddress,
+                                                    email,
                                                     0,role)
         )
 // this would be some function for adding a new user to a db
