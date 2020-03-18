@@ -3,6 +3,7 @@ import { auth, authId } from '../middleware/auth-middleware'
 import { findReimByStatus, findReimById, saveOneReim, updateOneReim } from '../services/reim_service'
 import { ReimDTO } from '../dtos/ReimDTO'
 import * as session from 'express-session'
+import { reimbursement } from '../models/reimbursement'
 
 
 
@@ -63,9 +64,9 @@ reimRouter.post('',auth(['1','2','3']),authId ,async(req,res)=>
     const {
             amount,description,type
             }:{  
-                 amount:Number,
-                description:String,
-                type:Number
+                 amount:number,
+                description:string,
+                type:number
               }= req.body
     //console.log('amount , ID' +amount, id );
     
@@ -89,7 +90,7 @@ reimRouter.post('',auth(['1','2','3']),authId ,async(req,res)=>
 reimRouter.patch('',auth(['1','2']),authId ,async(req,res)=>
 {
     try {
-        const {
+        let {reimbursementId,
             author,
             amount,
             dateSubmitted,
@@ -99,26 +100,31 @@ reimRouter.patch('',auth(['1','2']),authId ,async(req,res)=>
             status,
             type            
         }:{
-            author:String
+            reimbursementId:number
+            author:string
             amount:number
-            dateSubmitted:Date
-            dateResolved:Date
-            description:String
-            resolver:String
-            status:String
-            type:String
+            dateSubmitted:string
+            dateResolved:string
+            description:string
+            resolver:string
+            status:string
+            type:string
         }=req.body
-
-
-        if(author && amount && dateSubmitted && dateResolved && description && resolver && status&&type)
+       // console.log('returning router value')
+        //console.log(reimbursement)
+  
+        if(reimbursementId&&author && amount && dateSubmitted && dateResolved && description && resolver && status&&type)
         {       
             let newReim = await updateOneReim(new ReimDTO(
-               0, author, amount,
+                reimbursementId, author, amount,
                  dateSubmitted, 
                  dateResolved, description,
                  resolver,
                  status,type)
+                 
             )
+           // console.log(newReim);
+
     // this would be some function for adding a new user to a db
             res.status(201).json(newReim);
         } else {
